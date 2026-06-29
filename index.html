@@ -1019,26 +1019,33 @@ function badgeHTML(status) {
   return '<span class="badge badge-upcoming">Upcoming</span>';
 }
 
-function cleanName(filename) {
-  // Remove the topic prefix and .md suffix, then format nicely
-  // e.g. "pre-bootcamp-onboarding-Oyimafu-Emmanuel.md" → "Oyimafu Emmanuel"
-  let name = filename.replace(/\.md$/, '');
-  // Strip known topic prefixes (everything up to and including the second hyphen group that matches folder topic)
-  // Strategy: split by hyphens, drop parts that look like topic words, keep the rest as name
-  const parts = name.split('-');
-  // Find where the actual name starts — names typically start with a capital letter
-  // after the topic slug. We look for the first part that starts with uppercase
-  // after at least 2 parts (topic must have at least one segment).
-  let nameStart = parts.length; // fallback: use full string
-  for (let i = 1; i < parts.length; i++) {
-    if (parts[i] && parts[i][0] === parts[i][0].toUpperCase() && parts[i][0].match(/[A-Z]/)) {
-      nameStart = i;
-      break;
+function cleanName(filename, folderName) {
+  // Remove .md extension if present
+  let name = filename.replace(/\.md$/i, '');
+
+  // The folder name gives us the topic slug to strip, e.g.
+  // "session-00-2026-06-27-pre-bootcamp-onboarding"
+  // → topic slug is everything after the date: "pre-bootcamp-onboarding"
+  // We strip that prefix from the filename to get the mentee name.
+  const datePart = folderName.match(/\d{4}-\d{2}-\d{2}-(.+)$/);
+  if (datePart) {
+    const topicSlug = datePart[1]; // e.g. "pre-bootcamp-onboarding"
+    const prefix = topicSlug + '-';
+    if (name.toLowerCase().startsWith(prefix.toLowerCase())) {
+      name = name.slice(prefix.length);
     }
   }
-  const nameParts = parts.slice(nameStart);
-  if (nameParts.length === 0) return name; // fallback
-  return nameParts.join(' ');
+
+  // Remove trailing "-template" if mentee left it in their filename
+  name = name.replace(/-?template$/i, '');
+
+  // Replace hyphens, underscores with spaces and trim
+  name = name.replace(/[-_]/g, ' ').trim();
+
+  // Title-case each word
+  name = name.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1));
+
+  return name || filename; // fallback to raw filename if parsing fails
 }
 
 async function loadSession(session) {
@@ -1054,14 +1061,16 @@ async function loadSession(session) {
     if (!res.ok) throw new Error('fetch failed');
     const files = await res.json();
 
-    // Filter out README.md and template files — only keep submitted notes
-    const submissions = files.filter(f =>
-      f.type === 'file' &&
-      f.name.endsWith('.md') &&
-      f.name !== 'README.md' &&
-      !f.name.includes('yourname-template') &&
-      !f.name.includes('YOURNAME')
-    );
+    // Keep all files except: README.md, the blank yourname-template, and folders
+    const submissions = files.filter(f => {
+      if (f.type !== 'file') return false;
+      const n = f.name.toLowerCase();
+      // Skip the official blank template (yourname-template)
+      if (n === 'readme.md') return false;
+      if (n.includes('yourname-template')) return false;
+      // Everything else is a real submission (even if mentee left 'template' in their filename)
+      return true;
+    });
 
     return { session, submissions };
   } catch(e) {
@@ -1082,7 +1091,7 @@ function renderCard({ session, submissions }) {
       '</li>';
   } else {
     filesHTML = submissions.map(f => {
-      const displayName = cleanName(f.name);
+      const displayName = cleanName(f.name, session.folder);
       const fileUrl = 'https://github.com/' + REPO + '/blob/' + BRANCH + '/classes/' + session.folder + '/' + f.name;
       return '<li><span class="dot"></span><a href="' + fileUrl + '" target="_blank" style="color:inherit;text-decoration:none;">' + displayName + '</a></li>';
     }).join('');
@@ -1125,7 +1134,11 @@ function refreshSubmissions() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', loadAllSubmissions);
+document.addEventListener('DOMContentLoaded', () => {
+  loadAllSubmissions();
+  // Auto-refresh every 5 minutes so counts stay in sync automatically
+  setInterval(loadAllSubmissions, 5 * 60 * 1000);
+});
 </script>
 
 </body>
