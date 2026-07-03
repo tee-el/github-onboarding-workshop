@@ -1,51 +1,37 @@
-# My Notes — [REPLACE WITH YOUR FULL NAME]
+## My Notes- Opaaje Temiloluwa
 
-> **How to use this file:**
-> 1. **Download** this file to your computer — click the **Raw** button on GitHub, then right-click and *Save As*, OR click the download icon at the top-right of the file view
-> 2. **Rename** the downloaded file — replace `yourname` with your actual first and last name in lowercase, separated by hyphens, e.g. `microsoft-entra-oyimafu-emmanuel.md`
-> 3. **Open** the renamed file in any text editor (Notepad, VS Code, TextEdit) and fill in your notes below
-> 4. **Upload** your file to GitHub — go into this session folder on your forked repo, click **Add file → Upload files**, drag in your completed file, then click **Commit changes**
-> 5. **Open a Pull Request** back to the main repo — the facilitator will review your notes before merging
-
----
 
 ## Key Concepts I Learned
-
-<!-- Write the main ideas covered in today's session -->
-
--
--
--
-
----
-
-## Lab / Hands-On Work
-
-<!-- Describe what you did in the lab. Include steps, commands, or screenshots descriptions -->
+- I learnt about the course and what it is all about that is Cloud Security
+- I learnt about the expectations the mentors expects, the willingness and interactiveness of the mentees
+- Prerequisite material: SC-900 (Security Fundamentals) and SC-300 (Identity and Access) on the community YouTube channel
+- Core expectations: integrity (no copying), consistency (weekly rhythm), professionalism (camera-ready)
+- GitHub and how to use it, the fork-and-pull-request workflow for submitting assignments
+- Azure lab environment setup and the importance of deleting resource groups right after labs to conserve credits
 
 ### What I did
-
+- Watched and repeated the walkthrough of setting up a GitHub repository
+- Followed the demo on the fork-and-pull-request assignment workflow
+- Set up Azure lab environment
 
 ### What happened / Result
-
+- Understood the submission process and portfolio-building purpose of GitHub notes
+- Learned how to manage Azure resource groups to avoid burning credits
 
 ### Challenges I faced
-
-
----
+- Submitting my assignment file in the wrong place, mistakenly added it directly into the repository instead of the classes folder
+- network and logining issues
 
 ## My Takeaways
-
-<!-- What was most valuable to you personally from this session? -->
-
-
----
+Consistency and accountability matter as much as technical skill in this program
+GitHub isn't just for submission — it's a portfolio for future employers
+Deleting upon completion is a very important habit in ys7ng Azure.
 
 ## Questions I Still Have
 
 <!-- Anything you want to follow up on or ask the mentor -->
 
--
+- is it possible to delete files on this repository in cases of you submitted a wrong file or in the wrong location
 -
 
 ---
@@ -54,8 +40,9 @@
 
 <!-- Any links, docs, or Microsoft Learn modules you found helpful -->
 
--
+- Azure
+-  Github
 
 ---
 
-*Submitted by: [Your Full Name] · [Your GitHub username]*
+*Submitted by: [Opaaje Temiloluwa] · [tee_el]*
