@@ -23,7 +23,7 @@ Microsoft 365 Teams Developer Portal
 <img width="1626" height="470" alt="image" src="https://github.com/user-attachments/assets/65c6fa23-9a0b-4fc8-b102-0c9bbe7a8254" />
 
 - Registered the NASA API key in the Microsoft 365 Vault.
-<img width="1626" height="470" alt="image" src="https://github.com/user-attachments/assets/8f0ae4da-3df1-42c7-b54b-30feadf85ae8" />
+<img width="831" height="370" alt="{07680086-30E0-40D6-874D-D4FF4E82AEC3}" src="https://github.com/user-attachments/assets/86ed4a76-1e44-4d5f-af0f-d00831d9c593" />
 
 - Verified that the API key is securely stored in the Microsoft 365 Vault and is not exposed in the application.
   <img width="1818" height="264" alt="image" src="https://github.com/user-attachments/assets/d257c5e3-ce9c-4dfd-9ef7-b19122b72482" />
