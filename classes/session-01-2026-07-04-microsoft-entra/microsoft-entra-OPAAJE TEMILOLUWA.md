@@ -1,61 +1,60 @@
-# My Notes — [REPLACE WITH YOUR FULL NAME]
 
-> **How to use this file:**
-> 1. **Download** this file to your computer — click the **Raw** button on GitHub, then right-click and *Save As*, OR click the download icon at the top-right of the file view
-> 2. **Rename** the downloaded file — replace `yourname` with your actual first and last name in lowercase, separated by hyphens, e.g. `microsoft-entra-oyimafu-emmanuel.md`
-> 3. **Open** the renamed file in any text editor (Notepad, VS Code, TextEdit) and fill in your notes below
-> 4. **Upload** your file to GitHub — go into this session folder on your forked repo, click **Add file → Upload files**, drag in your completed file, then click **Commit changes**
-> 5. **Open a Pull Request** back to the main repo — the facilitator will review your notes before merging
+# My Notes — OPAAJE TEMILOLUWA
+
+Microsoft Entra Identity & Access Security
 
 ---
 
 ## Key Concepts I Learned
 
-<!-- Write the main ideas covered in today's session -->
-
--
--
--
-
----
+- Microsoft Entra ID is the cloud directory service (tenant, users, groups, directory roles) that all access controls in this session are built on; the session's core purpose was granting and controlling resource access using four tools: Conditional Access, SSPR, PIM, and identity-aware apps
+- Full authentication strength spectrum, ranked from strongest to weakest:
+  - **Passwordless**: Windows Hello for Business, Passkeys (FIDO2), FIDO2 security keys, Microsoft Authenticator (phone sign-in)
+  - Multifactor: Authenticator app (push/TOTP), OATH hardware tokens, SMS/voice call (legacy), Temporary Access Pass
+  - Single factor: password, security questions (SSPR-only), email (SSPR-only) — fallback use only, not primary authentication
+- MFA matters because even if an attacker steals a username and password, they're still blocked without the second verification layer
+- Conditional Access is Entra's policy engine, working as **Signals → Decision → Enforcement**:
+  - Signals: user/group, application, device state, named location, sign-in/user risk
+  - Decision: allow, block, require MFA, require compliant device, require auth strength
+  - Enforcement: grant controls, session controls, continuous access evaluation, sign-in frequency
+- Sign-in risk (likelihood a login attempt isn't genuinely the account owner) and insider risk (risky data-related activity from inside the environment) are distinct signals that can trigger stricter policy enforcement
+- Named locations let policies require MFA specifically for sign-ins originating outside approved geographic/network zones
+- Standing privilege (permanent admin role assignments) is the largest blast radius risk in most tenants if an account is compromised
+- PIM (Privileged Identity Management) converts permanent access into time-bound, approved, audited activations — Just-in-Time access requiring MFA and written justification, lasting a set window (e.g. 8–24 hours) before expiring
+- Role delegation should be scoped to the task — a User Administrator or Password Administrator can handle password resets or new account creation, rather than defaulting every request to a Global Administrator; elevated role requests go through PIM instead, keeping the process structured and auditable
+- Conditional Access is always application-specific — most real-world misconfiguration and troubleshooting issues trace back to forgotten scope, not the underlying policy logic.
 
 ## Lab / Hands-On Work
 
-<!-- Describe what you did in the lab. Include steps, commands, or screenshots descriptions -->
+**What I did**
+Followed the mentor's live demo building a Conditional Access policy that enforces MFA using if-then logic. Continued following along as the policy was refined with named locations, then watched it get troubleshot in real time using a live test user to confirm behavior.
 
-### What I did
+**What happened / Result**
+Watched the policy get configured, tested against an actual sign-in attempt, and adjusted based on the results — this confirmed how the signals, decisions, and enforcement controls behave once genuinely applied, not just in theory.
+
+**Challenges I faced**
+*(To be filled in once I attempt my own hands-on replication of the lab — the session covered the mentor's demo, but I haven't yet logged my personal issues while doing it myself.)*
 
 
-### What happened / Result
-
-
-### Challenges I faced
-
-
----
 
 ## My Takeaways
 
-<!-- What was most valuable to you personally from this session? -->
+The most valuable part of this session was seeing the full chain connect end to end: Entra ID establishes identity, MFA verifies it, Conditional Access decides how to act on that verified identity, and PIM extends the same least-privilege thinking from sign-ins to privileged roles themselves. The point about role delegation — that not every request needs a Global Administrator, and that routine tasks can be handled by scoped roles like User or Password Administrator — was a practical reminder that access should always match what's actually needed, not default to the highest level available.
 
 
----
 
 ## Questions I Still Have
 
-<!-- Anything you want to follow up on or ask the mentor -->
+-why is Microsoft entra the foundation for everything in Cloud Security 
+-Why is single-factor authentication considered insecure, even with a strong password?
+-What is Just-in-Time (JIT) access, and how does PIM implement it?
 
--
--
-
----
 
 ## Resources I Found Useful
 
-<!-- Any links, docs, or Microsoft Learn modules you found helpful -->
+-Microsoft Entra fundamentals
+-SC-900 (Security, Compliance, and Identity Fundamentals)
+-SC-300 (Identity and Access Administrator)
 
--
 
----
-
-*Submitted by: [Your Full Name] · [Your GitHub username]*
+*Submitted by: [OPAAJE TEMILOLUWA] · [tee_el]*
