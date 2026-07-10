@@ -9,11 +9,11 @@
 - Securing access to resources using MS entra
 - We focussed on authentication, MFA, CA and PIM  
 - I studied "Authenticate Your API Plugin for Declarative Agents with Secured APIs". In the module I learnt how to securely connect API plugins used by declarative agents in Microsoft 365 Copilot to protect backend APIs with focus on the two API authentication methods (API key and OAuth 2.0)
-- API Key Authentication
+- API Key Authentication -
 Uses a static key to authenticate requests.
 Simpler to implement.
 Best for service-to-service integrations where user identity isn't required.
-- OAuth 2.0 Authentication
+- OAuth 2.0 Authentication -
 Uses access tokens and user consent.
 Supports user-specific permissions and secure enterprise access.
 Recommended for most business applications.
